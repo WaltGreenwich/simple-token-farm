@@ -93,6 +93,8 @@ contract TokenFarm {
     // Función para reclamar recompensas acumuladas
     //
     function claimRewards() external {
+        distributeRewards(msg.sender); // ✅ Nuevo: Calcula recompensas antes de reclamar
+
         uint256 pendingAmount = pendingRewards[msg.sender];
         require(pendingAmount > 0, "No rewards");
 
@@ -124,6 +126,7 @@ contract TokenFarm {
     function distributeRewards(address beneficiary) private {
         uint256 lastCheckpoint = checkpoints[beneficiary];
         if (block.number <= lastCheckpoint || totalStakingBalance == 0) {
+            checkpoints[beneficiary] = block.number;
             return;
         }
 

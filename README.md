@@ -121,4 +121,4 @@ Ver en [Etherscan](https://sepolia.etherscan.io)
 
 ## Autor
 
-Walter Greenwich Chaca
+MIT © Walter Greenwich Chaca
