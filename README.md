@@ -1,9 +1,10 @@
-# 🧑‍🌾 Simple Token Farm (DeFi Yield Farming)
+# 🪙 TokenFarm - Sistema de Staking en Solidity
 
 Este es un proyecto educativo de una plataforma DeFi simple que simula un sistema de **staking con recompensas** al estilo Yield Farming, basado en el modelo de PancakeSwap.
 
 ## 📝 Descripción
 
+Este proyecto implementa un **sistema básico de staking** donde los usuarios pueden depositar tokens y obtener recompensas en base al tiempo que mantienen sus tokens bloqueados. Desarrollado en **Solidity** con **Hardhat**.
 Este contrato inteligente permite a los usuarios:
 
 - Hacer **staking** de un token LP (liquidity provider).
@@ -23,7 +24,9 @@ Este contrato inteligente permite a los usuarios:
 - Hardhat
 - NPM
 
-## 🚀 Instalación
+## ⚙️ Instalación y Configuración
+
+### 1. Clonar el repositorio:
 
 ```bash
 git clone https://github.com/tu_usuario/simple-token-farm.git
@@ -31,39 +34,91 @@ cd simple-token-farm
 npm install
 ```
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat ignition deploy ./ignition/modules/Lock.js
+### 2. Instalar dependencias:
+
+```bash
+npm install
 ```
 
-## 🔨 Compilar contratos
+### 3. Configurar variables de entorno:
+
+```ini
+SEPOLIA_URL=https://eth-sepolia.g.alchemy.com/v2/TU_API_KEY
+PRIVATE_KEY=TU_CLAVE_PRIVADA
+ETHERSCAN_API_KEY=TU_API_KEY_ETHERSCAN
+```
+
+⚠️ Importante: No subas .env a GitHub. Agrega en .gitignore:
+
+```
+.env
+node_modules/
+```
+
+## 🔨 Comandos básicos
+
+### **Compilar contratos**:
 
 ```bash
 npx hardhat compile
 
 ```
 
-## 🧪 Ejecutar nodo local
+### 🧪 Ejecutar pruebas
 
 ```bash
-npx hardhat node
+npx hardhat test
 
 ```
 
-## 🚀 Desplegar en red local
+## 🚀 Deployment en Testnet Sepolia
 
-En una segunda terminal:
+Usa tu API Key de Alchemy o Infura:
 
 ```bash
-npx hardhat run scripts/deploy.js --network localhost
+npx hardhat run scripts/deploy.ts --network sepolia
 
 ```
 
-## 📜 Licencia
+Ejemplo de salida:
 
-MIT © Walter Greenwich
+```yaml
+Deploying contracts...
+TokenFarm deployed at: 0x1234abcd...
 
----
+```
+
+## 📜 Scripts de Interacción
+
+- Hacer staking
+- Reclamar recompensas
+- Retirar tokens
+  Ejecutar scripts:
+
+```bash
+npx hardhat run scripts/stake.ts --network sepolia
+```
+
+## ✅ Tests incluidos
+
+Los tests en `test/TokenFarm.ts` cubren:
+
+- Stake de tokens y verificación de balance.
+
+- Reclamo de recompensas.
+
+- Restricciones de solo owner en funciones críticas.
+
+## 🔒 Seguridad implementada
+
+- Validación onlyOwner en funciones administrativas.
+
+- Uso de eventos para auditoría.
+
+## ✅ Contrato desplegado (ejemplo)
+
+Ver en [Etherscan](https://sepolia.etherscan.io)
+
+## Autor
+
+Walter Greenwich Chaca
